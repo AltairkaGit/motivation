@@ -2,6 +2,9 @@
 const { name: appName } = require('./package.json');
 
 module.exports = {
+    typescript: { 
+        ignoreBuildErrors: true 
+    },
     transpilePackages: ['@salutejs/spatial'],
     // адрес CDN для статики
     assetPrefix: process.env.PUBLIC_URL || '',

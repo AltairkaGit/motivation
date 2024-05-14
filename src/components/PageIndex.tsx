@@ -23,7 +23,7 @@ const Album = ({data}: {data: Quote | undefined}) => (
 )
 
 const Portrait = ({data}: {data: Quote | undefined}) => (
-    <motion.div className="flex flex-col px-16 items-center pt-6 pb-32 xl:hidden gap-5">
+    <motion.div className="flex flex-col px-16 items-center pt-6 pb-40 xl:hidden gap-5">
     <Image src="/static/goblet.svg" alt="" width={200} height={209}/>
     <AnimatePresence mode="wait">
     {

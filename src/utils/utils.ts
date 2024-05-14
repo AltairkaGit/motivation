@@ -11,7 +11,7 @@ export const useBasePath = () => {
     const character = useCharacter();
     const { platform } = usePlatform();
 
-    return `/joy/@${platform}`;
+    return `/${character}/@${platform}`;
 };
 
 // вызывать только на клиенте
@@ -22,7 +22,7 @@ export const getBasePathNotInComponent = () => {
     } = Router;
     const { platform } = getPlatformByPath(asPath);
 
-    return `/joy/@${platform}`;
+    return `/${character}/@${platform}`;
 };
 
 export const isServer = typeof window === 'undefined';

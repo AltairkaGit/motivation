@@ -1,6 +1,6 @@
 import { CharacterId } from '@salutejs/client';
 import { GetStaticPaths } from 'next';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { createGlobalStyle } from 'styled-components';
 import { darkSber, lightEva, lightJoy } from '@salutejs/plasma-tokens/themes';
 
@@ -17,10 +17,10 @@ export const getCharacterStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-const knownCharacters = ['joy', 'eva'] as const;
+const knownCharacters = ['joy', 'eva', 'sber'] as const;
 
 const isKnownCharacter = (character?: string): character is CharacterId => {
-    return knownCharacters.includes(character as 'joy');
+    return knownCharacters.includes(character as 'sber' | 'joy' | 'eva');
 };
 
 // работает корректно для пре-рендера

@@ -31,7 +31,7 @@ const categoryById: any = {}
 const idByCategory: any = {}
 export const categories: {name:string, id:number}[] = []
 
-const API = 'http://79.174.92.186:8000'
+const API = 'https://johnshelby.ru:8000'
 
 const banList: number[] = []
 const BanListSize = 5

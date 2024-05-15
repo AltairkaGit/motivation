@@ -20,6 +20,8 @@ import {
     say,
     init,
     refuseDaily,
+    next_quote,
+    next_quote_rejected,
 } from './handlers';
 
 const { regexp, action } = createMatchers<SaluteRequest>();
@@ -42,17 +44,17 @@ const userScenario = createUserScenario({
         }
     },
     Category: {
-        match: regexp(/^цитата из категория (?<category>.+)$/i),  
+        match: regexp(/^цитата из категории (?<category>.+)$/i, {normalized: false}),  
         // @ts-ignore
         handle: category
     },
     Category2: {
-        match: regexp(/^категория (?<category>.+)$/i),  
+        match: regexp(/^категория (?<category>.+)$/i, {normalized: false}),  
         // @ts-ignore
         handle: category
     },
     Random: {
-        match: regexp(/^случайный цитата$/i),  
+        match: regexp(/^случайная цитата$/i, {normalized: false}),  
         handle: random
     },
     Random2: {
@@ -252,6 +254,25 @@ const userScenario = createUserScenario({
         // @ts-ignore
         handle: category_explicit
     },
+    Next: {
+        match: regexp(/^слудующая$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: next_quote
+    },
+    Next2: {
+        match: regexp(/^слудующая цитата$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: next_quote
+    },
+    NextReject: {
+        match: action('next_quote_reject'),
+        handle: next_quote_rejected
+    },
+    NextCategory: {
+        match: action('next_quote_category'),  
+        // @ts-ignore
+        handle: category
+    },
 });
 
 const scenarioWalker = createScenarioWalker({
@@ -289,15 +310,19 @@ export const handleNlpRequest = async (request: NLPRequest): Promise<NLPResponse
 В режиме меню отображены инструкции основных сценариев работы смартаппа, т.е. что нужно сказать или сделать для работы определенного сценария.
 Инструкции являются по совместительству кнопками, на которые можно нажать
 
-Есть кнопки цитата дня, случайная цитата, и кнопки категорий при активации которых будет произведен переход в режим цитаты соответствующего вида
-Активировать можно либо нажатием, либо сказав вслух. Интерфейс вроде простой и понятный, трудно запутаться.
+Есть кнопки цитата дня, случайная цитата, и кнопки категорий при активации которых будет произведен переход в режим цитаты соответствующей категории
+Активировать можно либо нажатием, либо сказав вслух. 
+Интерфейс вроде простой и понятный, трудно запутаться.
 На васякий случай есть внизу всегда есть подсказки, которые можно либо нажать, либо сказать.
 
 В режиме цитаты отображены:
 1. категория цитаты и кнопка назад, которая переводит приложение в реим меню
 2. текст цитаты
 3. автор цитаты
-Ассистент озвучивает вид цитаты, текст и автора, после этого включается голосовой ввод и можно сказать "в меню" или "назад" для перехода в режим меню.
+Ассистент озвучивает вид цитаты, текст и автора, после этого включается голосовой ввод.
+
+Для перехода в режим меню можно сказать одну из команд:
+назад; обратно; верни; вернись; давай назад; вернись назад; давай обратно; верни обратно; предыдущий экран;
 
 
 Для перехода в режим цитаты можно сказать:

@@ -50,12 +50,12 @@ export interface BackCommand extends SaluteCommand {
     }
 }
 
-export interface TestCommand extends SaluteCommand {
-    type: 'test';
+export interface NextCommand extends SaluteCommand {
+    type: 'next';
     payload: any
 }
 
-export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | TestCommand;
+export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | NextCommand;
 
 export interface CategoryVariables extends SaluteRequestVariable {
     category: string

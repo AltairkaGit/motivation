@@ -34,7 +34,7 @@ export const categories: {name:string, id:number}[] = []
 const API = 'https://johnshelby.ru:8000'
 
 const banList: number[] = []
-const BanListSize = 5
+const BanListSize = 1
 const addInBanList = (id: number) => {
     if (banList.includes(id)) return
     if (banList.length == BanListSize) banList.shift()
@@ -168,11 +168,19 @@ const back = () => {
     }))
 }
 
+const next_quote = () => {
+    const data = queryClient.getQueryData<State>('quote')
+    console.log(data)
+    if (data.caregory) assistantInstance?.sendActionPromisified!({type: 'next_quote_category', payload: {category: data.caregory}})
+    else assistantInstance?.sendActionPromisified!({type: 'next_quote_rejected', payload: {}})
+}
+
 export const executors = {
     back,
     category,
     daily,
-    random
+    random,
+    next_quote
 }
 
 export function smartAppDataHandler(action: InputActionType) {
@@ -190,8 +198,8 @@ export function smartAppDataHandler(action: InputActionType) {
         case 'back':
             back()
             break
-        case 'test':
-            console.log(action.payload)
+        case 'next':
+            next_quote()
             break
 
     }

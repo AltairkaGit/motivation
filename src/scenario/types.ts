@@ -66,7 +66,7 @@ export interface NextRejectedCommand extends SaluteCommand {
 }
 
 export interface RepeatAsk extends SaluteCommand {
-    type: 'repeat_ask';
+    type: 'repeat';
     payload: any
 }
 

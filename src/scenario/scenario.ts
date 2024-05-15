@@ -50,6 +50,11 @@ const userScenario = createUserScenario({
         // @ts-ignore
         handle: category
     },
+    CategoryAction: {
+        match: action('category'),  
+        // @ts-ignore
+        handle: category
+    },
     Random: {
         match: regexp(/^(случайная) (цитата?)$/i, {normalized: false}),  
         handle: random
@@ -76,8 +81,8 @@ const userScenario = createUserScenario({
         // @ts-ignore
         handle: next_quote
     },
-    NextAccepted: {
-        match: action('next_quote'),  
+    NextAction: {
+        match: action('next_quote_ask'),  
         // @ts-ignore
         handle: next_quote
     },
@@ -85,13 +90,13 @@ const userScenario = createUserScenario({
         match: action('next_quote_reject'),
         handle: next_quote_rejected
     },
-    NextCategory: {
-        match: action('next_quote_category'),  
-        // @ts-ignore
-        handle: category
-    },
     RepeatAsk: {
         match: regexp(/^(повтор|повтори)$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: repeat_ask
+    },
+    RepeatAskAction: {
+        match: action('repeat'),  
         // @ts-ignore
         handle: repeat_ask
     },

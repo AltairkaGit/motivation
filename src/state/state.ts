@@ -174,7 +174,7 @@ const back = () => {
 
 const next_quote = () => {
     const data = queryClient.getQueryData<State>('quote')
-    if (data?.category) assistantInstance?.sendActionPromisified!({type: 'next_quote_category', payload: {category: data.category}})
+    if (data?.category) assistantInstance?.sendActionPromisified!({type: 'category', payload: {category: data.category}})
     else assistantInstance?.sendActionPromisified!({type: 'next_quote_rejected', payload: {}})
 }
 
@@ -184,13 +184,21 @@ const repeat = () => {
     else assistantInstance?.sendActionPromisified!({type: 'repeat_rejected', payload: {}})
 }
 
+const next_ask = () => {
+    assistantInstance?.sendActionPromisified!({type: 'next_quote_ask', payload: {}})
+}
+
+const repeat_ask = () => {
+    assistantInstance?.sendActionPromisified!({type: 'repeat', payload: {}})
+}
+
 export const executors = {
     back,
     category,
     daily,
     random,
-    next_quote,
-    repeat
+    next_ask,
+    repeat_ask
 }
 
 export function smartAppDataHandler(action: InputActionType) {
@@ -211,7 +219,7 @@ export function smartAppDataHandler(action: InputActionType) {
         case 'next_quote':
             next_quote()
             break
-        case 'next_quote':
+        case 'repeat':
             repeat()
             break
     }

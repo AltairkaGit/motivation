@@ -88,9 +88,8 @@ export const next_quote: SaluteHandler<SaluteRequest<any>> = async ({req, res}) 
 }
 
 export const next_quote_rejected: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
-    const toSay = 'Сначала необходимо выбрать категорию'
     res.setAutoListening(false)
-    res.setPronounceText(toSay)
+    res.setPronounceText('Сначала необходимо выбрать категорию')
     res.setAutoListening(true)
 }
 
@@ -101,12 +100,11 @@ export const back: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
 }
 
 export const repeat_ask: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
-    res.appendCommand<RepeatAsk>({ type: 'repeat_ask', payload: {} })
+    res.appendCommand<RepeatAsk>({ type: 'repeat', payload: {} })
 }
 
 export const repeat_rejected: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
-    const toSay = 'Пока нечего повторять'
     res.setAutoListening(false)
-    res.setPronounceText(toSay)
+    res.setPronounceText('Пока нечего повторять')
     res.setAutoListening(true)
 }

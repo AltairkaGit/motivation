@@ -16,7 +16,7 @@ const Interface = ({data}: {data: State | undefined}) => {
         'quote': <QuoteView key='quote' quote={data as Quote} />
     }), [data?.screen])
     return (
-        <motion.div className="flex flex-col xl:flex-row pt-6 pb-40 xl:py-20 px-5 xl:px-20 items-center xl:items-start xl:justify-between gap-5 xl:gap-20">
+        <motion.div className="flex flex-col xl:flex-row pt-6 pb-64 xl:py-20 px-5 xl:px-20 items-center xl:items-start xl:justify-between gap-5 xl:gap-20">
             <Image src="/static/goblet.svg" alt="" width={0} height={0} className="w-[140px] h-[146px] sm:w-[174px] sm:h-[182px] xl:w-[480px] xl:h-[500px] 2xl:w-[525px] 2xl:h-[548px]"/>
             <AnimatePresence mode="wait">
                 { links[data?.screen ?? 'menu'] }
@@ -31,8 +31,11 @@ export const PageIndex = () => {
     useEffect(() => {
         assistantInstance?.sendActionPromisified!({type: 'init'})
     }, [])
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'})
+    }, [data?.screen])
     return (
-        <motion.main className='h-dvh overflow-x-hidden bg-bg sm:bg-black md:bg-red-600 lg:bg-amber-500 xl:bg-teal-400 2xl:bg-indigo-500'>
+        <motion.main className='min-h-dvh bg-bg sm:bg-black md:bg-red-600 lg:bg-amber-500 xl:bg-teal-400 2xl:bg-indigo-500'>
             <Interface data={data} />
         </motion.main>
     )

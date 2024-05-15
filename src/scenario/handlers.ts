@@ -36,9 +36,7 @@ export const runAppHandler: SaluteHandler = async ({ res, req }) => {
 }
 
 export const noMatchHandler: SaluteHandler<SaluteRequest<any>> = ({ req, res }) => {
-    res.setPronounceText('Не понятно')
-    res.setPronounceText('Вы сказали: ' + req.message.original_text)
-    res.appendCommand<TestCommand>({ type: 'test', payload: { req } })
+    res.setPronounceText('Неизвестная команда')
     res.appendSuggestions(['В меню', 'Цитата дня', 'Случайная цитата'])
     res.setAutoListening(true)
 }

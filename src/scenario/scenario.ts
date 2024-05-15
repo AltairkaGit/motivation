@@ -114,6 +114,11 @@ const userScenario = createUserScenario({
         match: regexp(/^верни$/i, {normalized: false}),
         handle: back
     },
+    Category3: {
+        match: regexp(/^(?<category>.+)$/i),  
+        // @ts-ignore
+        handle: category
+    },
 });
 
 const scenarioWalker = createScenarioWalker({

@@ -2,7 +2,7 @@ import { SaluteHandler, SaluteRequest, Surface, Device } from '@salutejs/scenari
 
 import { DeviceFamily } from '../types'
 
-import { CategoryVariables, CategoryCommand, RandomCommand, DailyCommand, TestCommand, QuoteRes, BackCommand, Quote } from './types'
+import { CategoryVariables, CategoryCommand, RandomCommand, DailyCommand, QuoteRes, BackCommand, Quote, NextCommand } from './types'
 
 const SURFACE_TO_PLATFORM_MAP: Partial<Record<Surface, DeviceFamily>> = {
     SBERBOX: 'sberbox',
@@ -84,7 +84,7 @@ export const say: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
 }
 
 export const next_quote: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
-    res.appendCommand<CategoryCommand>({ type: 'next_quote', payload: {} })
+    res.appendCommand<NextCommand>({ type: 'next_quote', payload: {} })
 }
 
 export const next_quote_rejected: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {

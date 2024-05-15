@@ -51,11 +51,21 @@ export interface BackCommand extends SaluteCommand {
 }
 
 export interface NextCommand extends SaluteCommand {
-    type: 'next';
+    type: 'next_quote';
     payload: any
 }
 
-export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | NextCommand;
+export interface NextCategoryCommand extends SaluteCommand {
+    type: 'next_quote_category';
+    payload: any
+}
+
+export interface NextRejectedCommand extends SaluteCommand {
+    type: 'next_quote_rejected';
+    payload: any
+}
+
+export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | NextCommand | NextCategoryCommand | NextRejectedCommand;
 
 export interface CategoryVariables extends SaluteRequestVariable {
     category: string

@@ -171,7 +171,7 @@ const back = () => {
 const next_quote = () => {
     const data = queryClient.getQueryData<State>('quote')
     console.log(data)
-    if (data.caregory) assistantInstance?.sendActionPromisified!({type: 'next_quote_category', payload: {category: data.caregory}})
+    if (data?.category) assistantInstance?.sendActionPromisified!({type: 'next_quote_category', payload: {category: data.category}})
     else assistantInstance?.sendActionPromisified!({type: 'next_quote_rejected', payload: {}})
 }
 
@@ -198,7 +198,7 @@ export function smartAppDataHandler(action: InputActionType) {
         case 'back':
             back()
             break
-        case 'next':
+        case 'next_quote':
             next_quote()
             break
 

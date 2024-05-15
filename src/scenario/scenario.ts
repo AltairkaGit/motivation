@@ -255,12 +255,17 @@ const userScenario = createUserScenario({
         handle: category_explicit
     },
     Next: {
-        match: regexp(/^слудующая$/i, {normalized: false}),  
+        match: regexp(/^следующая$/i, {normalized: false}),  
         // @ts-ignore
         handle: next_quote
     },
     Next2: {
-        match: regexp(/^слудующая цитата$/i, {normalized: false}),  
+        match: regexp(/^следующая цитата$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: next_quote
+    },
+    Next3: {
+        match: action('next_quote'),  
         // @ts-ignore
         handle: next_quote
     },

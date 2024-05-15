@@ -75,11 +75,43 @@ const userScenario = createUserScenario({
         handle: say
     },
     Back: {
-        match: regexp(/^в меню$/i, {normalized: false}),
+        match: regexp(/^обратно$/i, {normalized: false}),
         handle: back
     },
     Back2: {
         match: regexp(/^назад$/i, {normalized: false}),
+        handle: back
+    },
+    Back3: {
+        match: regexp(/^давай обратно$/i, {normalized: false}),
+        handle: back
+    },
+    Back4: {
+        match: regexp(/^давай назад$/i, {normalized: false}),
+        handle: back
+    },
+    Back5: {
+        match: regexp(/^вернись назад$/i, {normalized: false}),
+        handle: back
+    },
+    Back6: {
+        match: regexp(/^открой предыдущий экран$/i, {normalized: false}),
+        handle: back
+    },
+    Back7: {
+        match: regexp(/^верни обратно$/i, {normalized: false}),
+        handle: back
+    },
+    Back8: {
+        match: regexp(/^предыдущий экран$/i, {normalized: false}),
+        handle: back
+    },
+    Back9: {
+        match: regexp(/^вернись$/i, {normalized: false}),
+        handle: back
+    },
+    Back10: {
+        match: regexp(/^верни$/i, {normalized: false}),
         handle: back
     },
 });

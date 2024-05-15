@@ -44,7 +44,7 @@ export const noMatchHandler: SaluteHandler<SaluteRequest<any>> = ({ req, res }) 
 }
 
 export const init: SaluteHandler<SaluteRequest<any>> = async ({ res, req }) => {
-    res.appendSuggestions(['Хочу', 'Случайная цитата', 'Категория мотивация и успех'])
+    res.appendSuggestions(['Да', 'Нет', 'Случайная цитата', 'Категория мотивация и успех'])
     res.setAutoListening(true)  
 }
 
@@ -57,21 +57,17 @@ export const refuseDaily: SaluteHandler<SaluteRequest<any>> = async ({ res, req 
 export const random: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     res.appendCommand<RandomCommand>({ type: 'random', payload: {} })
     res.appendSuggestions(['В меню', 'Цитата дня'])
-    res.setPronounceText('Случайная цитата')
 }
 
 export const daily: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     res.appendCommand<DailyCommand>({ type: 'daily', payload: {} })
     res.appendSuggestions(['В меню', 'Случайная цитата'])
-    res.setPronounceText('Цитата дня')
 }
 
 export const category: SaluteHandler<SaluteRequest<CategoryVariables>> = async ({req, res}) => {
     const { category } = req.variables
     res.appendCommand<CategoryCommand>({ type: 'category', payload: {category} })
     res.appendSuggestions(['В меню', 'Цитата дня', 'Случайная цитата'])
-    const toSay = 'Цитата из категории ' + category
-    res.setPronounceText(toSay)
 }
 
 export const say: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
@@ -89,10 +85,4 @@ export const back: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     res.setAutoListening(false)
     res.setPronounceText('Меню')
     res.setAutoListening(true)
-}
-
-export const test: SaluteHandler<SaluteRequest<any>> = ({ req, res }) => {
-    res.setPronounceText('Тест')
-    res.setPronounceText('Вы сказали: ' + req.message.original_text)
-    res.appendCommand<TestCommand>({ type: 'test', payload: { req } })
 }

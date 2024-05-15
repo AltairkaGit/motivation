@@ -22,6 +22,8 @@ import {
     refuseDaily,
     next_quote,
     next_quote_rejected,
+    repeat_ask,
+    repeat_rejected,
 } from './handlers';
 
 const { regexp, action } = createMatchers<SaluteRequest>();
@@ -44,21 +46,12 @@ const userScenario = createUserScenario({
         }
     },
     Category: {
-        match: regexp(/^цитата из категории (?<category>.+)$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category
-    },
-    Category2: {
-        match: regexp(/^категория (?<category>.+)$/i, {normalized: false}),  
+        match: regexp(/^(цитата из категории|категория) (?<category>.+)$/i, {normalized: false}),  
         // @ts-ignore
         handle: category
     },
     Random: {
-        match: regexp(/^случайная цитата$/i, {normalized: false}),  
-        handle: random
-    },
-    Random2: {
-        match: regexp(/^случайная$/i, {normalized: false}),  
+        match: regexp(/^(случайная) (цитата?)$/i, {normalized: false}),  
         handle: random
     },
     Daily: {
@@ -70,201 +63,20 @@ const userScenario = createUserScenario({
         handle: say
     },
     Back: {
-        match: regexp(/^обратно$/i, {normalized: false}),
+        match: regexp(/^(обратно|назад|давай обратно|давай назад|вернись назад|открой предыдущий экран|верни обратно|предыдущий экран|вернись|верни)$/i, {normalized: false}),
         handle: back
     },
-    Back2: {
-        match: regexp(/^назад$/i, {normalized: false}),
-        handle: back
-    },
-    Back3: {
-        match: regexp(/^давай обратно$/i, {normalized: false}),
-        handle: back
-    },
-    Back4: {
-        match: regexp(/^давай назад$/i, {normalized: false}),
-        handle: back
-    },
-    Back5: {
-        match: regexp(/^вернись назад$/i, {normalized: false}),
-        handle: back
-    },
-    Back6: {
-        match: regexp(/^открой предыдущий экран$/i, {normalized: false}),
-        handle: back
-    },
-    Back7: {
-        match: regexp(/^верни обратно$/i, {normalized: false}),
-        handle: back
-    },
-    Back8: {
-        match: regexp(/^предыдущий экран$/i, {normalized: false}),
-        handle: back
-    },
-    Back9: {
-        match: regexp(/^вернись$/i, {normalized: false}),
-        handle: back
-    },
-    Back10: {
-        match: regexp(/^верни$/i, {normalized: false}),
-        handle: back
-    },
-    Category3: {
-        match: regexp(/^мотивация и успех$/i, {normalized: false}),  
+    CategoryExplicit: {
+        match: regexp(/^(мотивация и успех|счастье и благодарность|любовь и отношения|мудрость и самопознание|работа и творчество|спорт и здоровье|бизнес и финансы|путешествия|искусство и культура|наука и технологии|мотивация|успех|счастье|благодарность|любовь|отношения|мудрость|самопознание|работа|творчество|спорт|здоровье|бизнес|финансы|путешествия|искусство|культура|наука|техника|технологии|техно)$/i, {normalized: false}),  
         // @ts-ignore
         handle: category_explicit
     },
-    Category4: {
-        match: regexp(/^счастье и благодарность$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category5: {
-        match: regexp(/^любовь и отношения$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category6: {
-        match: regexp(/^мудрость и самопознание$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category7: {
-        match: regexp(/^работа и творчество$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category8: {
-        match: regexp(/^спорт и здоровье$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category9: {
-        match: regexp(/^бизнес и финансы$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category10: {
-        match: regexp(/^путешествия$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category11: {
-        match: regexp(/^искусство и культура$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category12: {
-        match: regexp(/^наука и технологии$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category13: {
-        match: regexp(/^мотивация$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category14: {
-        match: regexp(/^успех$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category15: {
-        match: regexp(/^счастье$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category16: {
-        match: regexp(/^благодарность$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category17: {
-        match: regexp(/^любовь$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category18: {
-        match: regexp(/^отношения$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category19: {
-        match: regexp(/^мудрость$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category20: {
-        match: regexp(/^самопознание$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category21: {
-        match: regexp(/^работа$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category22: {
-        match: regexp(/^творчество$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category23: {
-        match: regexp(/^спорт$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category24: {
-        match: regexp(/^здоровье$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category25: {
-        match: regexp(/^бизнес$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category26: {
-        match: regexp(/^финансы$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category27: {
-        match: regexp(/^путешествия$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category28: {
-        match: regexp(/^искусство$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category29: {
-        match: regexp(/^культурас$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category30: {
-        match: regexp(/^наука$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Category31: {
-        match: regexp(/^технологии$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: category_explicit
-    },
-    Next: {
-        match: regexp(/^следующая$/i, {normalized: false}),  
+    NextAsk: {
+        match: regexp(/^(следующая) (цитата?)$/i, {normalized: false}),  
         // @ts-ignore
         handle: next_quote
     },
-    Next2: {
-        match: regexp(/^следующая цитата$/i, {normalized: false}),  
-        // @ts-ignore
-        handle: next_quote
-    },
-    Next3: {
+    NextAccepted: {
         match: action('next_quote'),  
         // @ts-ignore
         handle: next_quote
@@ -277,6 +89,16 @@ const userScenario = createUserScenario({
         match: action('next_quote_category'),  
         // @ts-ignore
         handle: category
+    },
+    RepeatAsk: {
+        match: regexp(/^(повтор|повтори)$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: repeat_ask
+    },
+    RepeatRejected: {
+        match: action('repeat_rejected'),  
+        // @ts-ignore
+        handle: repeat_rejected
     },
 });
 

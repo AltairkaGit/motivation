@@ -65,7 +65,17 @@ export interface NextRejectedCommand extends SaluteCommand {
     payload: any
 }
 
-export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | NextCommand | NextCategoryCommand | NextRejectedCommand;
+export interface RepeatAsk extends SaluteCommand {
+    type: 'repeat_ask';
+    payload: any
+}
+
+export interface RepeatRejected extends SaluteCommand {
+    type: 'repeat_rejected';
+    payload: any
+}
+
+export type InputActionType = BackCommand | CategoryCommand | RandomCommand | DailyCommand | NextCommand | NextCategoryCommand | NextRejectedCommand | RepeatAsk | RepeatRejected;
 
 export interface CategoryVariables extends SaluteRequestVariable {
     category: string

@@ -2,7 +2,7 @@ import { SaluteHandler, SaluteRequest, Surface, Device } from '@salutejs/scenari
 
 import { DeviceFamily } from '../types'
 
-import { CategoryVariables, CategoryCommand, RandomCommand, DailyCommand, QuoteRes, BackCommand, Quote, NextCommand } from './types'
+import { CategoryVariables, CategoryCommand, RandomCommand, DailyCommand, QuoteRes, BackCommand, Quote, NextCommand, RepeatAsk } from './types'
 
 const SURFACE_TO_PLATFORM_MAP: Partial<Record<Surface, DeviceFamily>> = {
     SBERBOX: 'sberbox',
@@ -97,5 +97,16 @@ export const next_quote_rejected: SaluteHandler<SaluteRequest<any>> = async ({re
 export const back: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     res.appendCommand<BackCommand>({ type: 'back', payload: {} })
     res.appendSuggestions(['Цитата дня', 'Случайная цитата', 'Мотивация и успех'])
+    res.setAutoListening(true)
+}
+
+export const repeat_ask: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
+    res.appendCommand<RepeatAsk>({ type: 'repeat_ask', payload: {} })
+}
+
+export const repeat_rejected: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
+    const toSay = 'Пока нечего повторять'
+    res.setAutoListening(false)
+    res.setPronounceText(toSay)
     res.setAutoListening(true)
 }

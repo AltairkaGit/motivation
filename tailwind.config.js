@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: '#1AD7E3',
+        bg: '#27057d',
       },
       fontFamily: {
         sans: ['var(--font-garamond)'],
@@ -18,7 +18,7 @@ module.exports = {
       boxShadow: {
         'glow': '0 0 48px rgba(0, 0, 0, .25)',
         'dk': '0 0 12px rgba(0, 0, 0, .25)',
-      }
+      },
     },
   },
   plugins: [],

@@ -6,6 +6,7 @@ import { assistantInstance } from '../utils/assistant';
 export const queryClient = new QueryClient();
 
 export interface State {
+    screen: 'menu' | 'quote',
     id: number | null,
     quote: string,
     author: string,
@@ -13,6 +14,7 @@ export interface State {
 }
 
 const initialState: State = {
+    screen: 'menu',
     id: null,
     quote: '',
     author: '',
@@ -23,7 +25,8 @@ const initialState: State = {
 function setQuote(quote: Quote) {
     queryClient.setQueryData<State>('quote', (prev = initialState) => ({
         ...prev,
-        ...quote
+        ...quote,
+        screen: 'quote'
     }))
 }
 
@@ -164,15 +167,21 @@ const category = async (category: string) => {
 
 const back = () => {
     queryClient.setQueryData<State>('quote', (prev = initialState) => ({
-        ...initialState,
+        ...prev,
+        screen: 'menu'
     }))
 }
 
 const next_quote = () => {
     const data = queryClient.getQueryData<State>('quote')
-    console.log(data)
     if (data?.category) assistantInstance?.sendActionPromisified!({type: 'next_quote_category', payload: {category: data.category}})
     else assistantInstance?.sendActionPromisified!({type: 'next_quote_rejected', payload: {}})
+}
+
+const repeat = () => {
+    const quote = queryClient.getQueryData<State>('quote')
+    if (quote?.id) assistantInstance?.sendActionPromisified!({type: 'say', payload: {quote}})
+    else assistantInstance?.sendActionPromisified!({type: 'repeat_rejected', payload: {}})
 }
 
 export const executors = {
@@ -180,7 +189,8 @@ export const executors = {
     category,
     daily,
     random,
-    next_quote
+    next_quote,
+    repeat
 }
 
 export function smartAppDataHandler(action: InputActionType) {
@@ -201,6 +211,8 @@ export function smartAppDataHandler(action: InputActionType) {
         case 'next_quote':
             next_quote()
             break
-
+        case 'next_quote':
+            repeat()
+            break
     }
 }

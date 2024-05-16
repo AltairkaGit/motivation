@@ -12,20 +12,7 @@
     "tsc": "tsc",
     "lint:stylelint:fix": "stylelint --config ./.stylelintrc.js ./src/{components,hooks,pages,styles}/**/*.{ts,tsx}",
     "lint:stylelint": "stylelint --config ./.stylelintrc.js ./src/{components,hooks,pages,styles}/**/*.{ts,tsx}",
-    "release": "git diff && auto shipit",
-    "cy:open": "cypress open -b chromium --env failOnSnapshotDiff=false",
-    "cy:open:portal": "npm run cy:open -- --config-file cypress/config/portal.config.ts",
-    "cy:open:sberbox": "npm run cy:open -- --config-file cypress/config/sberbox.config.ts",
-    "cy:open:mobile": "npm run cy:open -- --config-file cypress/config/mobile.config.ts",
-    "cy:portal": "start-test ${PORT:-3000} cy:open:portal",
-    "cy:sberbox": "start-test ${PORT:-3000} cy:open:sberbox",
-    "cy:mobile": "start-test ${PORT:-3000} cy:open:mobile",
-    "cy:run": "cypress run -b chromium",
-    "cy:clean": "rm -rf cypress/{results,reports} && rm -rf cypress/snapshots/**/*/__diff_output__ && rm -rf coverage && rm -rf .nyc_output",
-    "cy:test-build": "start-server-and-test build:serve ${PORT:-3000} cy:test",
-    "test:cy:sberbox": "CYPRESS_BASE_URL=${PUBLIC_URL:-'http://localhost:3000/'} CYPRESS_REPORT_FOLDER=cypress/ REPORT_FOLDER=cypress/ npm run cy:run -- --config-file cypress/config/sberbox.config.ts",
-    "test:cy:portal": "CYPRESS_BASE_URL=${PUBLIC_URL:-'http://localhost:3000/'} CYPRESS_REPORT_FOLDER=cypress/ REPORT_FOLDER=cypress/ npm run cy:run -- --config-file cypress/config/portal.config.ts",
-    "test:cy:mobile": "CYPRESS_BASE_URL=${PUBLIC_URL:-'http://localhost:3000/'} CYPRESS_REPORT_FOLDER=cypress/ REPORT_FOLDER=cypress/ npm run cy:run -- --config-file cypress/config/mobile.config.ts"
+    "release": "git diff && auto shipit"
   },
   "dependencies": {
     "@next/font": "14.2.3",
@@ -47,7 +34,6 @@
     "styled-components": "5.3.11"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "3.9.10",
     "@salutejs/eslint-config": "1.2.0",
     "@salutejs/prettier-config": "0.3.0",
     "@salutejs/stylelint-config": "0.8.0",
@@ -58,13 +44,10 @@
     "auto-prefixer": "0.4.2",
     "babel-eslint": "10.1.0",
     "cross-env": "7.0.3",
-    "cypress": "11.1.0",
-    "cypress-wait-until": "1.7.1",
     "eslint": "8.32.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.6.0",
     "eslint-config-react-app": "7.0.1",
-    "eslint-plugin-cypress": "2.12.1",
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-import": "2.27.4",
     "eslint-plugin-jest": "27.2.1",

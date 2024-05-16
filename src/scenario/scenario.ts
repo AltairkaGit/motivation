@@ -56,7 +56,7 @@ const userScenario = createUserScenario({
         handle: category
     },
     Random: {
-        match: regexp(/^(случайная) (цитата?)$/i, {normalized: false}),  
+        match: regexp(/^(случайная|случайная цитата)$/i, {normalized: false}),  
         handle: random
     },
     Daily: {
@@ -77,7 +77,7 @@ const userScenario = createUserScenario({
         handle: category_explicit
     },
     NextAsk: {
-        match: regexp(/^(следующая) (цитата?)$/i, {normalized: false}),  
+        match: regexp(/^(следующая|следующая цитата)$/i, {normalized: false}),  
         // @ts-ignore
         handle: next_quote
     },
@@ -91,7 +91,7 @@ const userScenario = createUserScenario({
         handle: next_quote_rejected
     },
     RepeatAsk: {
-        match: regexp(/^(повтор|повтори)$/i, {normalized: false}),  
+        match: regexp(/^(повтор|повтори|повторить)$/i, {normalized: false}),  
         // @ts-ignore
         handle: repeat_ask
     },

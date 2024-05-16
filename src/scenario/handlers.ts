@@ -25,7 +25,6 @@ const getDeviceFamily = (device: Device | undefined): DeviceFamily => {
     return client || 'mobile'
 }
 
-
 export const runAppHandler: SaluteHandler = async ({ res, req }) => {
     const { device } = req.request.payload
 
@@ -42,7 +41,7 @@ export const noMatchHandler: SaluteHandler<SaluteRequest<any>> = ({ req, res }) 
 }
 
 export const init: SaluteHandler<SaluteRequest<any>> = async ({ res, req }) => {
-    res.appendSuggestions(['Да', 'Нет', 'Случайная', 'Мотивация и успех'])
+    res.appendSuggestions(['Случайная', 'Мотивация и успех'])
     res.setAutoListening(true)  
 }
 

@@ -24,6 +24,7 @@ import {
     next_quote_rejected,
     repeat_ask,
     repeat_rejected,
+    avaliableCommands,
 } from './handlers';
 
 const { regexp, action } = createMatchers<SaluteRequest>();
@@ -105,6 +106,11 @@ const userScenario = createUserScenario({
         // @ts-ignore
         handle: repeat_rejected
     },
+    AvaliableCommands: {
+        match: regexp(/^(команды|какие команды|какие есть команды|как пользоваться|как пользоваться то|как тобой пользоваться|как тобой пользоваться то|как пользоваться приложением|как этим пользоваться|как пользоваться этим приложением|доступные команды|какие команды доступны|инструкция|инструкции)$/i, {normalized: false}),  
+        // @ts-ignore
+        handle: avaliableCommands
+    }
 });
 
 const scenarioWalker = createScenarioWalker({

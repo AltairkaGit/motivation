@@ -15,7 +15,6 @@
     "release": "git diff && auto shipit"
   },
   "dependencies": {
-    "@next/font": "14.2.3",
     "@salutejs/client": "1.24.0",
     "@salutejs/plasma-icons": "1.118.0",
     "@salutejs/plasma-tokens": "1.32.0",

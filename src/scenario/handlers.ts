@@ -31,23 +31,35 @@ export const runAppHandler: SaluteHandler = async ({ res, req }) => {
     res.setPronounceText('Хотите услышать цитату дня?')
     res.setAutoListening(true)
 
-    res.overrideFrontendEndpoint(`${req.appInfo.frontendEndpoint}/joy/@${getDeviceFamily(device)}`)
+    res.overrideFrontendEndpoint(`${req.appInfo.frontendEndpoint}/sber/@${getDeviceFamily(device)}`)
 }
 
 export const noMatchHandler: SaluteHandler<SaluteRequest<any>> = ({ req, res }) => {
-    res.setPronounceText('Неизвестная команда')
+    res.setPronounceText('Я не знаю такой команды. Воспользуйтесь кнопками и подсказками на экране')
+    res.appendSuggestions(['Цитата дня', 'Случайная', 'Мотивация и успех'])
+    res.setAutoListening(true)
+}
+
+export const avaliableCommands: SaluteHandler<SaluteRequest<any>> = ({ req, res }) => {
+    const toSay = `
+        Можно прослушать цитату дня, сказав "Цитата дня".
+        Можно услышать случайную цитату, произнеся "Случайная цитата".
+        Можно сказать название определенной категории, например "Мотивация и успех".
+        Также можно воспользоваться кнопками и подсказками на экране.
+    `
+    res.setPronounceText(toSay)
     res.appendSuggestions(['Цитата дня', 'Случайная', 'Мотивация и успех'])
     res.setAutoListening(true)
 }
 
 export const init: SaluteHandler<SaluteRequest<any>> = async ({ res, req }) => {
-    res.appendSuggestions(['Случайная', 'Мотивация и успех'])
+    res.appendSuggestions(['Случайная', 'Мотивация и успех', 'Цитата дня'])
     res.setAutoListening(true)  
 }
 
 export const refuseDaily: SaluteHandler<SaluteRequest<any>> = async ({ res, req }) => {
     res.appendSuggestions(['Случайная', 'Мотивация и успех', 'Цитата дня'])
-    res.setPronounceText('Хорошо, можете выбрать другую цитату')
+    res.setPronounceText('Хорошо, можно выбрать другую цитату')
     res.setAutoListening(true)
 }
 
@@ -79,7 +91,7 @@ export const say: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     const toSay = (quote?.quote ?? '') + (quote?.quote ? '. Автор: ' : '') + (quote?.author ?? '')
     res.setAutoListening(false)
     res.setPronounceText(toSay)
-    res.setAutoListening(true)
+    res.setAutoListening(false)
 }
 
 export const next_quote: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {

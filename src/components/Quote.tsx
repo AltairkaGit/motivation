@@ -10,7 +10,7 @@ const Line = () => <motion.div className="h-[1px] absolute -bottom-2 right-0 lef
 const container = 'flex gap-3 xl:gap-6 2xl:gap-8 3xl:gap-14'
 
 export const QuoteView = ({quote}: {quote: Quote}) => (
-    <motion.div className="flex-1" variants={itemVariants} transition={{duration: 1}} initial="out" animate="in" exit="out">
+    <motion.div className="flex-1 w-full" variants={itemVariants} transition={{duration: 1}} initial="out" animate="in" exit="out">
         <AnimatePresence mode="wait">
         <motion.div key={quote.id} className="flex flex-col gap-4 3xl:gap-8" variants={listVariants} initial="out" animate="in" exit="out">
             <motion.ul className={container} variants={itemVariants} transition={{duration: 1}}>
@@ -27,10 +27,10 @@ export const QuoteView = ({quote}: {quote: Quote}) => (
             </motion.ul>
             <motion.div className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-9xl text-justify relative" variants={itemVariants} transition={{duration: 1}}>
                 <Line />
-                "{quote.quote.replace(`'`, '') + '.'}"
+                "{quote.quote.replace(`'`, '')}"
             </motion.div>
             <motion.div className="px-5 py-2 rounded-lg text-2xl sm:text-4xl lg:text-5xl 2xl:text-6xl 3xl:text-8xl self-end" variants={itemVariants} transition={{duration: 1}}>
-                {quote.author.replace(`'`, '') + '.'}
+                {quote.author.replace(`'`, '')}
             </motion.div>
             <motion.ul variants={itemVariants} className={container}>
                 <motion.li variants={itemVariants} transition={{duration: 1}}>

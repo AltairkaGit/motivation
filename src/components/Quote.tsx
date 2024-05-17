@@ -14,7 +14,7 @@ export const QuoteView = ({quote}: {quote: Quote}) => (
         <AnimatePresence mode="wait">
         <motion.div key={quote.id} className="flex flex-col gap-4 3xl:gap-8" variants={listVariants} initial="out" animate="in" exit="out">
             <motion.ul className={container} variants={itemVariants} transition={{duration: 1}}>
-                <motion.li className="xl:w-[52px] 2xl:w-[76px] 3xl:w-[164px]">
+                <motion.li className="w-[44px] xl:w-[52px] 2xl:w-[76px] 3xl:w-[164px]">
                     <motion.button onClick={executors.back} className="text-black bg-white rounded-lg 3xl:rounded-[24px] h-full aspect-square flex items-center justify-center transition-all duration-150 outline-1 focus:shadow-dk focus:scale-105 focus:outline">
                         <Image width={10} height={16} src="/static/back.svg" alt="<" className="3xl:scale-[2.0]" />
                     </motion.button>

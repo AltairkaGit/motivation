@@ -88,7 +88,7 @@ export const category_explicit: SaluteHandler<SaluteRequest<CategoryVariables>> 
 export const say: SaluteHandler<SaluteRequest<any>> = async ({req, res}) => {
     const {quote} = req.variables
     
-    const toSay = (quote?.quote ?? '') + (quote?.quote ? '. Автор: ' : '') + (quote?.author ?? '')
+    const toSay = (quote?.quote ? quote.quote : '') + (quote?.quote ? '. Автор: ' : '') + (quote?.author ?? '')
     res.setAutoListening(false)
     res.setPronounceText(toSay)
     res.setAutoListening(false)

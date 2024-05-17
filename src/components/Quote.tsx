@@ -27,10 +27,10 @@ export const QuoteView = ({quote}: {quote: Quote}) => (
             </motion.ul>
             <motion.div className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-9xl text-justify relative" variants={itemVariants} transition={{duration: 1}}>
                 <Line />
-                "{quote.quote}"
+                "{quote.quote.replace(`'`, '') + '.'}"
             </motion.div>
             <motion.div className="px-5 py-2 rounded-lg text-2xl sm:text-4xl lg:text-5xl 2xl:text-6xl 3xl:text-8xl self-end" variants={itemVariants} transition={{duration: 1}}>
-                {quote.author}
+                {quote.author.replace(`'`, '') + '.'}
             </motion.div>
             <motion.ul variants={itemVariants} className={container}>
                 <motion.li variants={itemVariants} transition={{duration: 1}}>

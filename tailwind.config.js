@@ -14,13 +14,19 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-garamond)'],
+        serif: ['var(--font-jost)']
       },
       boxShadow: {
         'glow': '0 0 48px rgba(0, 0, 0, .25)',
-        'dk': '0 0 12px rgba(0, 0, 0, .25)',
+        'dk': '0 0 36px rgba(0, 0, 0, .5)',
+      },
+      screens: {
+        '3xl': '3840px',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ]
 }
 

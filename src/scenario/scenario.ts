@@ -69,7 +69,7 @@ const userScenario = createUserScenario({
         handle: say
     },
     Back: {
-        match: regexp(/^(обратно|назад|давай обратно|давай назад|вернись назад|открой предыдущий экран|верни обратно|предыдущий экран|вернись|верни)$/i, {normalized: false}),
+        match: regexp(/^(к категориям|в категории|категории|список тем|все цитаты|полный список|виды|виды цитат)$/i, {normalized: false}),
         handle: back
     },
     CategoryExplicit: {

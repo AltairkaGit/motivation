@@ -37,7 +37,7 @@ export const categories: {name:string, id:number}[] = []
 const API = 'https://johnshelby.ru:8000'
 
 const banList: number[] = []
-const BanListSize = 1
+const BanListSize = 9
 const addInBanList = (id: number) => {
     if (banList.includes(id)) return
     if (banList.length == BanListSize) banList.shift()

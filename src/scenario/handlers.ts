@@ -80,7 +80,7 @@ export const category: SaluteHandler<SaluteRequest<CategoryVariables>> = async (
 }
 
 export const category_explicit: SaluteHandler<SaluteRequest<CategoryVariables>> = async ({req, res}) => {
-    const category = req.message.original_text
+    const { category } = req.variables
     res.appendCommand<CategoryCommand>({ type: 'category', payload: {category} })
     res.appendSuggestions(['В категории', 'Следующая', 'Случайная', 'Цитата дня'])
 }

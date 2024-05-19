@@ -137,8 +137,8 @@ const retreiveCategoryId = (category: string) => {
     category.split(' и ').forEach(word => {
         if (id) return
         for (let k of Object.keys(idByCategory)) {
-            const words = k.split(' и ').map(w => w.slice(0, 4))
-            if (words.includes(word.slice(0, 4))) {
+            const words = k.split(' и ').map(w => w.slice(0, 3))
+            if (words.includes(word.slice(0, 3))) {
                 id = idByCategory[k]
                 break
             }

@@ -44,7 +44,7 @@ export const PageIndex = () => {
         window.scrollTo({top: 0, behavior: 'smooth'})
     }, [data?.screen])
     return (
-        <motion.main className='min-h-[125vh] bg-indigo-500 retative no-scrollbar'> {/*sm:bg-black*/}
+        <motion.main className='min-h-[125vh] bg-indigo-500 retative no-scrollbar'>
             <Interface data={data} />
         </motion.main>
     )

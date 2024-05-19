@@ -35,11 +35,11 @@ const userScenario = createUserScenario({
         handle: init,
         children: {
             no: {
-                match: regexp(/^.*\s?(нет|не хочу|откажусь|отказ.*|не интересно)\s?.*$/i, {normalized: false}),
+                match: regexp(/^.*\s?(нет|не хочу|откажусь|отказ.*|не интерес.*)\s?.*$/i, {normalized: false}),
                 handle: refuseDaily,
             },
             yes: {
-                match: regexp(/^.*\s?(да|хочу|расскажи|интересно)\s?.*$/i, {normalized: false}),
+                match: regexp(/^.*\s?(да|хочу|расскажи|интерес.*)\s?.*$/i, {normalized: false}),
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 handle: daily,
@@ -61,7 +61,7 @@ const userScenario = createUserScenario({
         handle: random
     },
     Daily: {
-        match: regexp(/^.*\s?(цитата|цитату) дня\s?.*$/i, {normalized: false}),  
+        match: regexp(/^.*\s?(цитат(а|у)) дня\s?.*$/i, {normalized: false}),  
         handle: daily
     },
     Say: {
@@ -69,7 +69,7 @@ const userScenario = createUserScenario({
         handle: say
     },
     NextAsk: {
-        match: regexp(/^.*\s?(следующая|следующую|некст|из этой же категории)\s?.*$/i, {normalized: false}),  
+        match: regexp(/^.*\s?(ещё|следующая|следующую|некст|из этой же категории|очередн(ая|ую))\s?.*$/i, {normalized: false}),  
         // @ts-ignore
         handle: next_quote
     },
@@ -78,7 +78,7 @@ const userScenario = createUserScenario({
         handle: back
     },
     CategoryExplicit: {
-        match: regexp(/^.*\s?(?<category>мотивация и успех|счастье и благодарность|любовь и отношения|мудрость и самопознание|работа и творчество|спорт и здоровье|бизнес и финансы|путешествия|искусство и культура|наука и технологии|мотивация|успех|счастье|благодарность|любовь|отношения|мудрость|самопознание|работа|творчество|спорт|здоровье|бизнес|финансы|путешествия|искусство|культура|наука|техника|технологии|техно)\s?.*$/i, {normalized: false}),  
+        match: regexp(/^.*\s?(?<category>мот.*|усп.*|сча.*|бла.*|люб.*|отн.*|муд.*|сам.*|раб.*|тво.*|спо.*|здо.*|биз.*|фин.*|пут.*|иск.*|кул.*|нау.*|тех.*)\s?.*$/i, {normalized: false}),  
         // @ts-ignore
         handle: category_explicit
     },

@@ -5,7 +5,7 @@ import { categories, executors } from '../state/state'
 import { itemVariants, listVariants } from '../ui/variants'
 import { button } from './PageIndex'
 
-const label = 'text-2xl xl:text-5xl 2xl:text-7xl 3xl:text-[148px]'
+const label = 'text-2xl xl:text-5xl 2xl:text-7xl 3xl:text-[148px] font-serif'
 const container = 'flex gap-5 xl:gap-5 2xl:gap-8 3xl:gap-14 flex-wrap' 
 
 export const Options = () => {

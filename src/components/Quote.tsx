@@ -25,7 +25,7 @@ export const QuoteView = ({quote}: {quote: Quote}) => (
                     </motion.button>
                 </motion.li>
             </motion.ul>
-            <motion.div className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-9xl text-justify relative" variants={itemVariants} transition={{duration: 1}}>
+            <motion.div className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-9xl text-justify relative font-serif" variants={itemVariants} transition={{duration: 1}}>
                 <Line />
                 "{quote.quote.replace(`'`, '')}"
             </motion.div>
